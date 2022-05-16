@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Wizard: IMagicCharacter
+    public class Wizard: Character, IMagicCharacter
     {
         private int health = 100;
 
@@ -9,14 +9,13 @@ namespace RoleplayGame
 
         private List<IMagicalItem> magicalItems = new List<IMagicalItem>();
 
-        public Wizard(string name)
+        public Wizard(string name): base(name)
         {
-            this.Name = name;
-            
+           
             this.AddItem(new Staff());
         }
 
-        public string Name { get; set; }
+      
         
         public int AttackValue
         {
