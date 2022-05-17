@@ -1,6 +1,6 @@
 namespace RoleplayGame
 {
-    public interface ISpell
+    public interface ISpell 
     {
         int AttackValue { get; }
 

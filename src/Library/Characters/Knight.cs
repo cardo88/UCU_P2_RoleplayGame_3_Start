@@ -1,66 +1,68 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Knight: Character
+    public class Knight: Character, IElementList<Item>
     {
         private int health = 100;
 
-        private List<IItem> items = new List<IItem>();
+        private List<Item> elementsList = new List<Item>();
+        public List<Item> ElementList
+        {
+            get
+            {
+                return elementsList;
+            }
+        }
 
         public Knight(string name) : base(name)
         {
             
-            this.AddItem(new Sword());
-            this.AddItem(new Armor());
-            this.AddItem(new Shield());
+            this.AddElement(new Sword());
+            this.AddElement(new Armor());
+            this.AddElement(new Shield());
         }
 
 
-        public int AttackValue
+        public override int AttackValue
         {
             get
             {
                 int value = 0;
-                foreach (IItem item in this.items)
+                foreach (Item item in this.elementsList)
                 {
-                    if (item is IAttackItem)
-                    {
-                        value += (item as IAttackItem).AttackValue;
-                    }
+                    value += item.AttackValue;
+                    
                 }
                 return value;
             }
         }
 
-        public int DefenseValue
+        public override int DefenseValue
         {
             get
             {
                 int value = 0;
-                foreach (IItem item in this.items)
+                foreach (Item item in this.elementsList)
                 {
-                    if (item is IDefenseItem)
-                    {
-                        value += (item as IDefenseItem).DefenseValue;
-                    }
+                    value += item.DefenseValue;
                 }
                 return value;
             }
         }
 
-        public int Health
+        public override int Health
         {
             get
             {
                 return this.health;
             }
-            private set
+            set //discutir
             {
                 this.health = value < 0 ? 0 : value;
             }
         }
 
-        public void ReceiveAttack(int power)
+        public override void ReceiveAttack(int power)
         {
             if (this.DefenseValue < power)
             {
@@ -68,19 +70,19 @@ namespace RoleplayGame
             }
         }
 
-        public void Cure()
+        public override void Cure()
         {
             this.Health = 100;
         }
 
-        public void AddItem(IItem item)
+        public void AddElement(Item item)
         {
-            this.items.Add(item);
+            this.elementsList.Add(item);
         }
 
-        public void RemoveItem(IItem item)
+        public void RemoveElement(Item item)
         {
-            this.items.Remove(item);
+            this.elementsList.Remove(item);
         }
     }
 }

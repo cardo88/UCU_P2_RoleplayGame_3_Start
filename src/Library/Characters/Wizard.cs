@@ -1,81 +1,65 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Wizard: Character, IMagicCharacter
+    public class Wizard: Character, IElementList<Element>
     {
         private int health = 100;
 
-        private List<IItem> items = new List<IItem>();
+        private List<Element> elementsList = new List<Element>();
 
-        private List<IMagicalItem> magicalItems = new List<IMagicalItem>();
+        public List<Element> ElementList
+        {
+            get
+            {
+                return this.elementsList;
+            }
+        }
 
         public Wizard(string name): base(name)
         {
            
-            this.AddItem(new Staff());
+            this.AddElement(new Staff());
         }
-
-      
         
-        public int AttackValue
+        public override int AttackValue
         {
             get
             {
                 int value = 0;
-                foreach (IItem item in this.items)
+                foreach (Element item in this.elementsList)
                 {
-                    if (item is IAttackItem)
-                    {
-                        value += (item as IAttackItem).AttackValue;
-                    }
-                }
-                foreach (IMagicalItem item in this.magicalItems)
-                {
-                    if (item is IMagicalAttackItem)
-                    {
-                        value += (item as IMagicalAttackItem).AttackValue;
-                    }
+                    value += item.AttackValue;
                 }
                 return value;
             }
         }
 
-        public int DefenseValue
+        public override int DefenseValue
         {
             get
             {
                 int value = 0;
-                foreach (IItem item in this.items)
+                foreach (Element item in this.elementsList)
                 {
-                    if (item is IDefenseItem)
-                    {
-                        value += (item as IDefenseItem).DefenseValue;
-                    }
-                }
-                foreach (IMagicalItem item in this.magicalItems)
-                {
-                    if (item is IMagicalDefenseItem)
-                    {
-                        value += (item as IMagicalDefenseItem).DefenseValue;
-                    }
+                   value += item.DefenseValue;
                 }
                 return value;
             }
         }
 
-        public int Health
+        public override int Health
         {
             get
             {
                 return this.health;
             }
-            private set
+            set //aca y en todos los personajes era private set pero me tiraba error y no se que hacer. ddiscutir luego.
             {
                 this.health = value < 0 ? 0 : value;
             }
         }
 
-        public void ReceiveAttack(int power)
+        public override void ReceiveAttack(int power)
         {
             if (this.DefenseValue < power)
             {
@@ -88,25 +72,14 @@ namespace RoleplayGame
             this.Health = 100;
         }
 
-        public void AddItem(IItem item)
+        public void AddElement(Element item)
         {
-            this.items.Add(item);
+            this.elementsList.Add(item);
         }
 
-        public void RemoveItem(IItem item)
+        public void RemoveElement(Element item)
         {
-            this.items.Remove(item);
+            this.elementsList.Remove(item);
         }
-
-        public void AddItem(IMagicalItem item)
-        {
-            this.magicalItems.Add(item);
-        }
-
-        public void RemoveItem(IMagicalItem item)
-        {
-            this.magicalItems.Remove(item);
-        }
-
     }
 }

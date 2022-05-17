@@ -1,8 +1,8 @@
 namespace RoleplayGame
 {
-    public class Staff: IAttackItem, IDefenseItem
+    public class Staff: Element
     {
-        public int AttackValue 
+        public override int AttackValue 
         {
             get
             {
@@ -10,7 +10,7 @@ namespace RoleplayGame
             } 
         }
 
-        public int DefenseValue
+        public override int DefenseValue
         {
             get
             {
