@@ -7,9 +7,7 @@ namespace RoleplayGame
         protected List<IMagicalItem> magicaIItems;
 
         public MagicCharacter(string name): base(name)
-        {
-            this.Name = name;
-            
+        {            
             magicaIItems = new List<IMagicalItem>();
         }
         public void AddMagicItem(IMagicalItem item)
