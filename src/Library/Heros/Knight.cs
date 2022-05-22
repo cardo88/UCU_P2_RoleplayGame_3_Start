@@ -1,34 +1,38 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Wizard: Character, IElementList<Element>
+    public class Knight: Hero, IElementList<Item>
     {
         private int health = 100;
 
-        private List<Element> elementsList = new List<Element>();
-
-        public List<Element> ElementList
+        private List<Item> elementsList = new List<Item>();
+        public List<Item> ElementList
         {
             get
             {
-                return this.elementsList;
+                return elementsList;
             }
         }
 
-        public Wizard(string name): base(name)
+        public Knight(string name) : base(name)
         {
-           
-            this.AddElement(new Staff());
+            
+            this.AddElement(new Sword());
+            this.AddElement(new Armor());
+            this.AddElement(new Shield());
+            totalVP = 0;
         }
-        
+
+
         public override int AttackValue
         {
             get
             {
                 int value = 0;
-                foreach (Element item in this.elementsList)
+                foreach (Item item in this.elementsList)
                 {
                     value += item.AttackValue;
+                    
                 }
                 return value;
             }
@@ -39,9 +43,9 @@ namespace RoleplayGame
             get
             {
                 int value = 0;
-                foreach (Element item in this.elementsList)
+                foreach (Item item in this.elementsList)
                 {
-                   value += item.DefenseValue;
+                    value += item.DefenseValue;
                 }
                 return value;
             }
@@ -53,7 +57,7 @@ namespace RoleplayGame
             {
                 return this.health;
             }
-            set //aca y en todos los personajes era private set pero me tiraba error y no se que hacer. ddiscutir luego.
+            set //discutir
             {
                 this.health = value < 0 ? 0 : value;
             }
@@ -67,19 +71,23 @@ namespace RoleplayGame
             }
         }
 
-        public void Cure()
+        public override void Cure()
         {
             this.Health = 100;
         }
 
-        public void AddElement(Element item)
+        public void AddElement(Item item)
         {
             this.elementsList.Add(item);
         }
 
-        public void RemoveElement(Element item)
+        public void RemoveElement(Item item)
         {
             this.elementsList.Remove(item);
+        }
+        public override int totalVictoryPoints()
+        {
+            return totalVP;
         }
     }
 }

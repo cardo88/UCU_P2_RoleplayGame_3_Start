@@ -1,37 +1,36 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Archer: Character, IElementList<Item>
+    public class Dwarf: Hero, IElementList<Item>
     {
         private int health = 100;
 
-        public List<Item> elementList = new List<Item>();
+        private List<Item> elementsList = new List<Item>();
 
         public List<Item> ElementList
         {
             get
             {
-                return this.elementList;
+                return this.elementsList;
             }
-        
-        }
-        
-        public Archer(string name) : base(name)
-        {
-            this.AddElement(new Bow());
-            this.AddElement(new Helmet());
         }
 
-        
+        public Dwarf(string name) : base(name)
+        {  
+            this.AddElement(new Axe());
+            this.AddElement(new Helmet());
+            totalVP = 0;
+        }       
         
         public override int AttackValue
         {
             get
             {
                 int value = 0;
-                foreach (Item item in this.elementList)
+                foreach (Item item in this.elementsList)
                 {
-                   value += item.AttackValue; 
+                    value += item.AttackValue;
+                    
                 }
                 return value;
             }
@@ -42,9 +41,10 @@ namespace RoleplayGame
             get
             {
                 int value = 0;
-                foreach (Item item in this.elementList)
+                foreach (Item item in this.elementsList)
                 {
                     value += item.DefenseValue;
+                
                 }
                 return value;
             }
@@ -56,7 +56,7 @@ namespace RoleplayGame
             {
                 return this.health;
             }
-            set // discutir
+            set // discutir esto
             {
                 this.health = value < 0 ? 0 : value;
             }
@@ -77,12 +77,17 @@ namespace RoleplayGame
 
         public void AddElement(Item item)
         {
-            this.elementList.Add(item);
+            this.elementsList.Add(item);
         }
 
         public void RemoveElement(Item item)
         {
-            this.elementList.Remove(item);
+            this.elementsList.Remove(item);
+        }
+
+        public override int totalVictoryPoints()
+        {
+            return totalVP;
         }
     }
 }
