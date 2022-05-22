@@ -1,8 +1,8 @@
 namespace RoleplayGame
 {
-    public class Sword: IAttackItem
+    public class Sword: Item
     {
-        public int AttackValue 
+        public override int AttackValue 
         {
             get
             {

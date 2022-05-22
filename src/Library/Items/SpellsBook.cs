@@ -2,11 +2,11 @@ using System.Collections.Generic;
 
 namespace RoleplayGame
 {
-    public class SpellsBook: IMagicalAttackItem, IMagicalDefenseItem
+    public class SpellsBook: Element
     {
         private List<ISpell> spells = new List<ISpell>();
         
-        public int AttackValue
+        public override int AttackValue
         {
             get
             {
@@ -19,7 +19,7 @@ namespace RoleplayGame
             }
         }
 
-        public int DefenseValue
+        public override int DefenseValue
         {
             get
             {
