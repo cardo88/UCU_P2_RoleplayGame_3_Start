@@ -86,9 +86,6 @@ namespace RoleplayGame
             this.elementList.Remove(item);
         }
 
-        public override int totalVictoryPoints()
-        {
-            return totalVP;
-        }
+      
     }
 }
