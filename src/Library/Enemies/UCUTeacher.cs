@@ -6,7 +6,7 @@ namespace RoleplayGame
         
         public UCUTeacher(string name) : base(name)
         {
-            this.vp = 5;
+            this.VP = 5;
         }
 
     }

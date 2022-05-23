@@ -6,7 +6,7 @@ namespace RoleplayGame
 
         public Wizard(string name): base(name)
         {
-            this.AddElement(new Staff());
+            this.AddMagicalElement(new Staff());
         }
         
 

@@ -13,7 +13,7 @@ namespace Program
 
             Wizard gandalf = new Wizard("Gandalf");
 
-            gandalf.AddElement(book);
+            gandalf.AddMagicalElement(book);
 
     
 

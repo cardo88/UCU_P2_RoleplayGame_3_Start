@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Zombi : Enemy
+    public class Webasignatura : Enemy
     {
         
-
-        public Zombi(string name) : base(name)
+        public Webasignatura(string name) : base(name)
         {
             this.VP = 2;
         }
