@@ -3,17 +3,17 @@ namespace RoleplayGame
 {
     public abstract class Character
     {
-        protected string Name { get; }
+        protected string name;
 
-        public abstract int Health { get; set; }
+        protected int health = 100; 
 
-        public abstract int AttackValue { get; }
+        public string Name { get; }
 
-        public abstract int DefenseValue { get; }
+        public int Health { get; }
 
-        public List<Item> elementList = new List<Item>();
+        protected List<IElements> elementList;
 
-        public List<Item> ElementList
+        public List<IElements> ElementList
         {
             get
             {
@@ -25,31 +25,60 @@ namespace RoleplayGame
         protected Character(string name)
         {
             this.Name = name;
+            elementList = new List<IElements>();
 
         }
 
-         public void AddElement(Item item)
+        public void AddElement(IElements element)
         {
-            this.elementList.Add(item);
+            this.elementList.Add(element);
         }
 
-        public void RemoveElement(Item item)
+        public void RemoveElement(IElements element)
         {
-            this.elementList.Remove(item);
+            this.elementList.Remove(element);
         }
 
-        public virtual void Cure()
+        public void Cure()
         {
             this.Health = 100;
         }
 
-        public virtual void ReceiveAttack(int power)
+        public void ReceiveAttack(int power)
         {
              if (this.DefenseValue < power)
             {
                 this.Health -= power - this.DefenseValue;
             }
         }
+
+        public virtual int AttackValue
+        {
+            get
+            {
+                int value = 0;
+                foreach (IElement element in this.elementList)
+                {
+                    if (element is IAttackElement)
+                        value += element.AttackValue; 
+                }
+                return value;
+            }
+        }
+
+        public virtual int DefenseValue
+        {
+            get
+            {
+                int value = 0;
+                foreach (IElement element in this.elementList)
+                {
+                    if (element is IDefenseElement)
+                        value += element.DefenseValue; 
+                }
+                return value;
+            }
+        }     
 
     }
 }

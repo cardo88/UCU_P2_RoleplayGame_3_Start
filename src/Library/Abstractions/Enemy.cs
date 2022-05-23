@@ -2,18 +2,13 @@ namespace RoleplayGame
 {
     public abstract class Enemy : Character
     {
-        protected int VP;
-        protected Enemy(string name, int vp ) : base (name)
+        protected int VP {get;}
+
+        protected Enemy(string name) : base (name)
         {
-            this.VP = vp;
+
         }
-        public int VictoryPoints
-        {
-            get
-            {
-                return this.VP;
-            }
-        }
+
     }
 
 }
