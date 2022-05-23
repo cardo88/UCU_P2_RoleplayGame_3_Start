@@ -1,8 +1,8 @@
 namespace RoleplayGame
 {
-    public class Armor: Item
+    public class Armor: IDefenseElement
     {
-        public override int DefenseValue
+        public int DefenseValue
         {
             get
             {
