@@ -9,11 +9,11 @@ namespace RoleplayGame
 
         public string Name { get; }
 
-        public int Health { get; }
+        public int Health { get;  }
 
-        protected List<IElements> elementList;
+        protected List<IElement> elementList;
 
-        public List<IElements> ElementList
+        public List<IElement> ElementList
         {
             get
             {
@@ -25,30 +25,30 @@ namespace RoleplayGame
         protected Character(string name)
         {
             this.Name = name;
-            elementList = new List<IElements>();
+            elementList = new List<IElement>();
 
         }
 
-        public void AddElement(IElements element)
+        public void AddElement(IElement element)
         {
             this.elementList.Add(element);
         }
 
-        public void RemoveElement(IElements element)
+        public void RemoveElement(IElement element)
         {
             this.elementList.Remove(element);
         }
 
         public void Cure()
         {
-            this.Health = 100;
+            this.health = 100;
         }
 
         public void ReceiveAttack(int power)
         {
              if (this.DefenseValue < power)
             {
-                this.Health -= power - this.DefenseValue;
+                this.health -= power - this.DefenseValue;
             }
         }
 
@@ -60,7 +60,7 @@ namespace RoleplayGame
                 foreach (IElement element in this.elementList)
                 {
                     if (element is IAttackElement)
-                        value += element.AttackValue; 
+                        value += (element as IAttackElement).AttackValue; 
                 }
                 return value;
             }
@@ -74,7 +74,7 @@ namespace RoleplayGame
                 foreach (IElement element in this.elementList)
                 {
                     if (element is IDefenseElement)
-                        value += element.DefenseValue; 
+                        value += (element as IDefenseElement).DefenseValue; 
                 }
                 return value;
             }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Dwarf: Hero, IElementList<Item>
+    public class Dwarf: Hero
     {
 
 

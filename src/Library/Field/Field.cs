@@ -32,41 +32,7 @@ namespace RoleplayGame
                     enemies.Add((Enemy)player); //agrega los enemigos al encuentro
                 }
             }
-
-            /*if (heroes.Count == 1 && enemies.Count > 1) //si en el encuentro hay un solo hereo y mas de 1 enemigo
-            {
-                do
-                {
-                    totalEnemyPower = 0;
-                    foreach (Enemy player in enemies)
-                    {
-                        totalEnemyPower += player.AttackValue; //para determinar el ataque total de los enemigos
-                    }
-                    heroes[0].ReceiveAttack(totalEnemyPower);
-                    if (heroes[0].Health > 0)
-                    {
-                        foreach (Enemy player in enemies)
-                        {
-                            player.ReceiveAttack(heroes[0].AttackValue);
-                            if (player.Health <= 0)
-                            {
-                                heroes[0].totalVictoryPoints(player.VictoryPoints);
-                                enemies.Remove(player);
-                            }
-                        }
-                    }
-
-                } while (heroes[0].Health > 0 && enemies.Count > 0);
-
-                if (heroes[0].Health > 0 && heroes[0].VictoryPoints >= 5)
-                {
-                    heroes[0].Cure();
-                    heroes[0].VictoryPoints -= 5;
-
-                }
-            }
-            if (heroes.Count == enemies.Count)
-            {*/
+            
             counter = 0;
             do
             {

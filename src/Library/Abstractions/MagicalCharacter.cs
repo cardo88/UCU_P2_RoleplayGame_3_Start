@@ -30,12 +30,12 @@ namespace RoleplayGame
                 foreach (IElement element in this.elementList)
                 {
                     if (element is IAttackElement)
-                        value += element.AttackValue; 
+                        value += (element as IAttackElement).AttackValue; 
                 }
-                foreach (IMagicalElement element in this.magicalElement)
+                foreach (IMagicalElement element in this.magicalElements)
                 {
-                    if (element is IMagicalAttackElement)
-                        value += element.AttackValue; 
+                    if (element is IMagicElementAttack)
+                        value += (element as IMagicElementAttack).AttackValue; 
                 }
                 return value;
             }
@@ -49,12 +49,12 @@ namespace RoleplayGame
                 foreach (IElement element in this.elementList)
                 {
                     if (element is IDefenseElement)
-                        value += element.DefenseValue; 
+                        value += (element as IDefenseElement).DefenseValue; 
                 }
-                foreach (IMagicalElement element in this.magicalElement)
+                foreach (IMagicalElement element in this.magicalElements)
                 {
-                    if (element is IMagicalDefenseElement)
-                        value += element.DefenseValue; 
+                    if (element is IMagicElementDefense)
+                        value += (element as IMagicElementDefense).DefenseValue; 
                 }
                 return value;
             }
