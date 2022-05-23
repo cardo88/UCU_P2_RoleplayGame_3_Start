@@ -7,9 +7,9 @@ namespace RoleplayGame
 
         protected int health = 100; 
 
-        public string Name { get; }
+        public string Name { get{return this.name;} }
 
-        public int Health { get;  }
+        public int Health { get{return this.health;}  }
 
         protected List<IElement> elementList;
 
@@ -24,7 +24,7 @@ namespace RoleplayGame
 
         protected Character(string name)
         {
-            this.Name = name;
+            this.name = name;
             elementList = new List<IElement>();
 
         }

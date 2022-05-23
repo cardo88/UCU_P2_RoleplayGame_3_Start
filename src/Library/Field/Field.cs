@@ -32,7 +32,7 @@ namespace RoleplayGame
                     enemies.Add((Enemy)player); //agrega los enemigos al encuentro
                 }
             }
-            
+
             counter = 0;
             do
             {
@@ -48,7 +48,7 @@ namespace RoleplayGame
                         }
                         else { counter++; }
 
-                        if (counter == heroes.Count - 1)
+                        if (counter >= heroes.Count - 1)
                         {
                             counter = 0;
                         }
@@ -62,13 +62,13 @@ namespace RoleplayGame
                     {
                         if (enemies.Count >= 1)
                         {
-                            foreach (Enemy enemy in enemies)
+                            for (int i = 0; i < enemies.Count; i++)
                             {
-                                enemy.ReceiveAttack(hero.AttackValue);
-                                if (enemy.Health <= 0)
+                               enemies[i].ReceiveAttack(hero.AttackValue);
+                                if (enemies[i].Health <= 0)
                                 {
-                                    hero.totalVictoryPoints(enemy.VictoryPoints);
-                                    enemies.Remove(enemy);
+                                    hero.totalVictoryPoints(enemies[i].VictoryPoints);
+                                    enemies.Remove(enemies[i]);
                                 }
                             }
                         }
