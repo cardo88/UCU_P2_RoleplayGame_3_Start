@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Archer: Hero, IElementList<Item>
+    public class UCUTeacher : Enemy, IElementList<Item>
     {
         private int health = 100;
-
         public List<Item> elementList = new List<Item>();
+
+        public UCUTeacher(string name, int VP) : base(name, VP)
+        {
+        }
+
 
         public List<Item> ElementList
         {
@@ -15,16 +19,29 @@ namespace RoleplayGame
             }
         
         }
-        
-        public Archer(string name) : base(name)
+
+        public void AddElement(Item item)
         {
-            this.AddElement(new Bow());
-            this.AddElement(new Helmet());
-            totalVP = 0;
+            this.elementList.Add(item);
         }
 
-        
-        
+        public void RemoveElement(Item item)
+        {
+            this.elementList.Remove(item);
+        }
+
+        public override int Health
+        {
+            get
+            {
+                return this.health;
+            }
+            set // discutir
+            {
+                this.health = value < 0 ? 0 : value;
+            }
+        }
+
         public override int AttackValue
         {
             get
@@ -51,33 +68,5 @@ namespace RoleplayGame
             }
         }
 
-        public override int Health
-        {
-            get
-            {
-                return this.health;
-            }
-            set // discutir
-            {
-                this.health = value < 0 ? 0 : value;
-            }
-        }
-
-        public override void ReceiveAttack(int power)
-        {
-            if (this.DefenseValue < power)
-            {
-                this.Health -= power - this.DefenseValue;
-            }
-        }
-
-        public override void Cure()
-        {
-            this.Health = 100;
-        }
-
-       
-
-      
     }
 }
