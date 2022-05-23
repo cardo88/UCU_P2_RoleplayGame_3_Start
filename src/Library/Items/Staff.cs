@@ -1,8 +1,8 @@
 namespace RoleplayGame
 {
-    public class Staff: Element
+    public class Staff: IMagicElementAttack, IMagicElementDefense
     {
-        public override int AttackValue 
+        public int AttackValue 
         {
             get
             {
@@ -10,7 +10,7 @@ namespace RoleplayGame
             } 
         }
 
-        public override int DefenseValue
+        public int DefenseValue
         {
             get
             {
