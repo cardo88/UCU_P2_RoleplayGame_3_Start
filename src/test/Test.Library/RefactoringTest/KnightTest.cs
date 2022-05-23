@@ -7,42 +7,43 @@ namespace Test.Library
     public class KnightTest
     {
         [Test]
-        public void AddAttackItemTest()
+        public void AddAttackElementTest()
         {
-            Knight knight = new Knight("Dark Knight"); // 20a 39d
-            Sword sword = new Sword(); 
-            knight.AddItem(sword);//+20a
-            Assert.AreEqual(40, knight.AttackValue);
+            Knight knight = new Knight("Dark Knight");  
+            
+            knight.AddElement(new Bow());
+            Assert.AreEqual(15, knight.AttackValue);
         }
 
         [Test]
-        public void AddDefensiveItemTest()
+        public void AddDefensiveElementTest()
         {
-            Knight knight = new Knight("Dark Knight");// 20a 39d
-            knight.AddItem(new Helmet()); //+18d
+            Knight knight = new Knight("Dark Knight"); 
+            knight.AddElement(new Helmet()); 
             Assert.AreEqual(57, knight.DefenseValue);
         }
 
         [Test]
         public void AttacktTest()
         {
-            Knight knight = new Knight("Dark Knight"); // 20a 39d
-            Dwarf dwarf = new Dwarf("Richi"); //25a 18d
-
-            knight.AddItem(new Sword());//+20a
+            Knight knight = new Knight("Dark Knight"); 
+            Dwarf dwarf = new Dwarf("Richi"); 
+            
+            knight.AddElement(new Bow());
+            knight.AddElement(new Bow());
             dwarf.ReceiveAttack(knight.AttackValue);
 
-            Assert.AreEqual(78, dwarf.Health);
+            Assert.AreEqual(88, dwarf.Health);
         }
 
         [Test]
         public void CureTest()
         {
-            Knight knight = new Knight("Dark Knight");// 20a 39d
+            Knight knight = new Knight("Dark Knight");
             
-            Dwarf dwarf = new Dwarf("Richi"); //25a 18d
-            dwarf.AddItem(new Sword());//+20a
-            dwarf.AddItem(new Sword());//+20a
+            Dwarf dwarf = new Dwarf("Richi"); 
+            dwarf.AddElement(new Sword());
+            dwarf.AddElement(new Sword());
             
             knight.ReceiveAttack(dwarf.AttackValue);
             knight.Cure();
@@ -53,34 +54,34 @@ namespace Test.Library
         [Test]
         public void RemoveAttackItemsTest()
         {
-            Knight knight = new Knight("Dark Knight");// 20a 39d
+            Knight knight = new Knight("Dark Knight");
             Sword sword = new Sword();
-            knight.AddItem(sword);
-            knight.RemoveItem(sword);
+            knight.AddElement(sword);
+            knight.RemoveElement(sword);
             Assert.AreEqual(39, knight.DefenseValue);
         }
 
         [Test]
         public void RemoveDefensiveItemsTest()
         {
-            Knight knight = new Knight("Dark Knight");// 20a 39d
+            Knight knight = new Knight("Dark Knight");
             Helmet helmet = new Helmet();
-            knight.AddItem(helmet);
-            knight.RemoveItem(helmet);
+            knight.AddElement(helmet);
+            knight.RemoveElement(helmet);
             Assert.AreEqual(39, knight.DefenseValue);
         }
 
         [Test]
         public void ReceiveAttackTest()
         {
-            Knight knight = new Knight("Dark Knight");// 20a 39d
+            Knight knight = new Knight("Dark Knight");
 
-            Dwarf dwarf = new Dwarf("Richi"); //25a 18d
-            dwarf.AddItem(new Sword());//+20a
-            dwarf.AddItem(new Sword());//+20a
+            Dwarf dwarf = new Dwarf("Richi"); 
+            dwarf.AddElement(new Bow());
+            dwarf.AddElement(new Bow());
 
             knight.ReceiveAttack(dwarf.AttackValue);
-            Assert.AreEqual(74, knight.Health);
+            Assert.AreEqual(84, knight.Health);
         }
     }
 }

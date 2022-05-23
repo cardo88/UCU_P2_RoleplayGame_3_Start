@@ -9,12 +9,12 @@ namespace Test.Library
         [Test]
         public void AddMagicElementTest()
         {
-            Wizard harry = new Wizard("Harry Potter"); //100a 100d por el staff
+            Wizard harry = new Wizard("Harry Potter"); 
             SpellsBook spellsBook = new SpellsBook();
-            SpellOne spell = new SpellOne(); //70a 70d
+            SpellOne spell = new SpellOne(); 
 
             spellsBook.AddSpell(spell);
-            harry.AddMagicItem(spellsBook);
+            harry.AddMagicalElement(spellsBook);
 
            // Assert.AreEqual(170, harry.AttackValue);
             // Assert.AreEqual(170, wizard.DefenseValue);
@@ -23,17 +23,17 @@ namespace Test.Library
         [Test]
         public void AttacktTest()
         {
-            Wizard harry = new Wizard("Harry Potter"); //100a 100d por el staff
+            Wizard harry = new Wizard("Harry Potter");
             SpellsBook spellsBook = new SpellsBook();
-            SpellOne spell = new SpellOne(); //70a 70d
+            SpellOne spell = new SpellOne(); 
 
             spellsBook.AddSpell(spell);
-            harry.AddMagicItem(spellsBook);
+            harry.AddMagicalElement(spellsBook);
 
-            Archer archer = new Archer("Jose"); // 15a 18d
-            archer.AddItem(new Helmet()); //+18d
-            archer.AddItem(new Armor()); //+25d
-            archer.AddItem(new Shield()); //+14
+            Archer archer = new Archer("Jose"); 
+            archer.AddElement(new Helmet()); 
+            archer.AddElement(new Armor()); 
+            archer.AddElement(new Shield()); 
             //archer 75d
 
            // archer.ReceiveAttack(harry.AttackValue);
@@ -43,19 +43,19 @@ namespace Test.Library
         [Test]
         public void CureTest()
         {
-            Wizard harry = new Wizard("Harry Potter"); //100a 100d por el staff
+            Wizard harry = new Wizard("Harry Potter"); 
 
-            Archer archer = new Archer("Jose"); // 15a 18d
-            archer.AddItem(new Sword()); //+20a
-            archer.AddItem(new Axe()); //+25a
-            archer.AddItem(new Axe()); //+25a
-            archer.AddItem(new Sword()); //+20a
+            Archer archer = new Archer("Jose"); 
+            archer.AddElement(new Sword()); 
+            archer.AddElement(new Axe()); 
+            archer.AddElement(new Axe()); 
+            archer.AddElement(new Sword()); 
 
             harry.ReceiveAttack(archer.AttackValue);
             harry.Cure();
             Assert.AreEqual(100, harry.Health);
 
-            //total 105a archer
+            
         }
 
         [Test]

@@ -3,35 +3,28 @@ using RoleplayGame;
 
 namespace Test.Library
 {
-
-
+    [TestFixture]
     public class DwarfTest
     {
-
-        
-
         Archer tauriel = new Archer("Tauriel"); // 15a 18d
 
         [Test]
-        public void AddAttackItemTest()
+        public void AddAttackElementTest()
         {
-            Sword sword = new Sword(); //20a
-            Shield shield = new Shield(); //14d
-
             Dwarf gruñon = new Dwarf("Gruñon"); //25a 18d
-            gruñon.AddItem(sword);
+            gruñon.AddElement(new Bow()); //++15a
 
-            Assert.AreEqual(45, gruñon.AttackValue);
+            Assert.AreEqual(40, gruñon.AttackValue);
         }
 
         [Test]
-        public void AddDefensiveItemTest()
+        public void AddDefensiveElementTest()
         {
             Dwarf gruñon = new Dwarf("Gruñon"); //25a 18d
             Helmet helmet = new Helmet(); //18d
             Shield shield = new Shield(); //14d
-            gruñon.AddItem(shield);
-            gruñon.AddItem(helmet);
+            gruñon.AddElement(shield);
+            gruñon.AddElement(helmet);
 
             Assert.AreEqual(50, gruñon.DefenseValue);
         }
@@ -56,25 +49,25 @@ namespace Test.Library
         }
 
         [Test]
-        public void RemoveDefensiveItemsTest()
+        public void RemoveDefensiveElementTest()
         {
             Dwarf gruñon = new Dwarf("Gruñon"); //25a 18d
             Shield shield = new Shield(); //14d
-            gruñon.AddItem(shield);
+            gruñon.AddElement(shield);
             
-            gruñon.RemoveItem(shield);
+            gruñon.RemoveElement(shield);
 
             Assert.AreEqual(18, gruñon.DefenseValue);
         }
         
         [Test]
-        public void RemoveAttackItemsTest()
+        public void RemoveAttackElementTest()
         {
             Dwarf gruñon = new Dwarf("Gruñon"); //25a 18d
             Sword sword=new Sword();
-            gruñon.AddItem(sword);
+            gruñon.AddElement(sword);
             
-            gruñon.RemoveItem(sword);
+            gruñon.RemoveElement(sword);
 
             Assert.AreEqual(18, gruñon.DefenseValue);
         }
@@ -85,10 +78,10 @@ namespace Test.Library
             Dwarf gruñon = new Dwarf("Gruñon"); //25a 18d
 
             Archer tauriel = new Archer("Tauriel"); // 15a 18d
-            tauriel.AddItem(new Sword()); // 35a tauriel
+            tauriel.AddElement(new Bow()); // 30a tauriel
 
             gruñon.ReceiveAttack(tauriel.AttackValue);
-            Assert.AreEqual(83, gruñon.Health);
+            Assert.AreEqual(88, gruñon.Health);
         }
     }
 }

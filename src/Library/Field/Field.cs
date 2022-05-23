@@ -12,6 +12,13 @@ namespace RoleplayGame
         private int totalEnemyPower = 0;
         private int totalHeroPower = 0;
         private int counter;
+        public List<Character> Players
+        {
+            get
+            {
+                return this.players;
+            }
+        }
         public void AddCharacterToEncounter(Character character)
         {
             if (!players.Contains(character))
