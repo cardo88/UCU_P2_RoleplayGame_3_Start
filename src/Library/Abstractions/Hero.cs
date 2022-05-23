@@ -3,6 +3,7 @@ namespace RoleplayGame
     public abstract class Hero : Character
     {
         protected int totalVP{ get; set; }
+        
         protected Hero(string name) : base (name)
         {
             this.totalVP = 0;
